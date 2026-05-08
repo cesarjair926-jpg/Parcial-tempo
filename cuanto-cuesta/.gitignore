@@ -33,6 +33,9 @@ yarn-error.*
 # local env files
 .env*.local
 
+# Variables de entorno con credenciales (NUNCA subir)
+.env
+
 # typescript
 *.tsbuildinfo
 
