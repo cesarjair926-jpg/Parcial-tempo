@@ -1,13 +1,23 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs, useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { HapticTab } from '../../components/haptic-tab';
+import { IconSymbol } from '../../components/ui/icon-symbol';
+import { Colors } from '../../constants/theme';
+import { useColorScheme } from '../../hooks/use-color-scheme';
+import { useAuth } from '../../src/hooks/useAuth';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { usuario, cargando } = useAuth();
+  const router = useRouter();
+
+  // Si el usuario cierra sesión, redirigir al login
+  useEffect(() => {
+    if (!cargando && !usuario) {
+      router.replace('/login');
+    }
+  }, [usuario, cargando]);
 
   return (
     <Tabs
@@ -19,17 +29,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Catálogo',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="productos"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Productos',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="plus.circle.fill" color={color} />,
         }}
       />
+
     </Tabs>
   );
 }
