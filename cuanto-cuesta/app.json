@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "cuanto-cuesta",
-    "slug": "cuanto-cuesta",
+    "name": "cuanto-cuesta-app",
+    "slug": "cuanto-cuesta-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "cuantocuesta",
+    "scheme": "cuantocuestaapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
